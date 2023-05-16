@@ -16,10 +16,10 @@ class Home extends Component
 
     public function count()
     {
-        $totalBookings = Booking::count();
-        $applicationReceived = Booking::where('booking_status', 'Complete')->count();
-        $activeBookings = Booking::where('booking_status', 'Pending')->count();
-        $cancelledBookings = Booking::where('booking_status', 'Cancelled')->count();
+        $totalBookings = Booking::where('user_id', auth()->id())->count();
+        $applicationReceived = Booking::where('user_id', auth()->id())->where('booking_status', 'Complete')->count();
+        $activeBookings = Booking::where('user_id', auth()->id())->where('booking_status', 'Pending')->count();
+        $cancelledBookings = Booking::where('user_id', auth()->id())->where('booking_status', 'Cancelled')->count();
 
         return compact('totalBookings', 'applicationReceived', 'activeBookings', 'cancelledBookings');
     }
@@ -27,7 +27,7 @@ class Home extends Component
 
     public function dispalyBookings()
     {
-        $bookings = Booking::get();
+        $bookings = Booking::where('user_id', auth()->id())->get();
 
         return compact('bookings');
     }
@@ -88,6 +88,7 @@ class Home extends Component
         $feedback->booking_id = $this->booking->id;
         $feedback->music_bar_id = $this->booking->musicbar->id;
         $feedback->user_id = auth()->user()->id;
+        $feedback->user_rating = $this->rating;
         $feedback->save();
 
         $this->booking->save();

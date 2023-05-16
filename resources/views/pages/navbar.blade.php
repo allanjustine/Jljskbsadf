@@ -29,6 +29,10 @@
                 <li class="{{ request()->is('playlist') ? 'active' : '' }}">
                     <a href="/playlist" class="text-white"><i class="fa fa-music" aria-hidden="true"></i>Music</a>
                 </li>
+                <li class="{{ request()->is('profile-settings') ? 'active' : '' }}">
+                    <a href="/profile-settings" class="text-white"><i class="fa fa-user-gear" aria-hidden="true"></i>Profile
+                        Settings</a>
+                </li>
                 <li>
                     <a href="/logout" class="text-white"><i class="fa fa-sign-out" aria-hidden="true"></i>Logout</a>
                 </li>

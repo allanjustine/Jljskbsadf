@@ -70,37 +70,46 @@
                     </div>
                     <hr class="text-white">
                     <div class="container">
-                        <h2 class="text-white">Bookings History</h2>
-                        <div class="card">
-                            <div class="card-body">
-
-
-                                <div class="container">
-                                    <table class="table text-white">
-                                        <thead>
-                                            <tr>
-                                                <th>TEST</th>
-                                                <th>Date</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Feedbacks:</td>
-                                                <td>Nice</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rated:</td>
-                                                <td>5</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Rated By:</td>
-                                                <td>Ako</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                        @if ($musicView_feedbacks)
+                            <h2 class="text-white">Bookings History</h2>
+                            @foreach ($musicView_feedbacks as $feedback)
+                                <div class="card mt-5">
+                                    <div class="card-body">
+                                        <div class="container">
+                                            <table class="table text-white">
+                                                <thead>
+                                                    <tr>
+                                                        <th>TEST</th>
+                                                        <th>{{ $feedback->created_at->format('d-m-Y') }}</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>Feedbacks:</td>
+                                                        <td>{{ $feedback->content }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Rated:</td>
+                                                        <td>
+                                                            @for ($i = 0; $i < $feedback->user_rating; $i++)
+                                                                <i class="fa fa-smile-o"
+                                                                    style="color: orange; font-size: 20px;"></i>
+                                                            @endfor
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Rated By:</td>
+                                                        <td>{{ $feedback->user->name }}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @else
+                            <p>No feedbacks available.</p>
+                        @endif
                     </div>
                 </div>
                 <div class="modal-footer">

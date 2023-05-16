@@ -108,6 +108,8 @@ class Index extends Component
             ->take(10)
             ->get();
 
+        $musicPlaylists->load('feedbacks');
+
         return compact('musicPlaylists', 'musicCount', 'musicTops');
     }
 
@@ -183,7 +185,7 @@ class Index extends Component
 
     public function view($id)
     {
-        $musicView = MusicBar::where('id', $id)->first();
+        $musicView = MusicBar::with('feedbacks')->find($id);
 
         $this->musicView_image = $musicView->image;
         $this->musicView_description = $musicView->description;
@@ -194,6 +196,7 @@ class Index extends Component
         $this->musicView_rating = $musicView->rating;
         $this->musicView_genre = $musicView->genre;
         $this->musicView_totalTransactions = $musicView->total_transactions;
+        $this->musicView_feedbacks = $musicView->feedbacks;
     }
 
 

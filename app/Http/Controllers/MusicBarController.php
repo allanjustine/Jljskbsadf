@@ -25,9 +25,15 @@ class MusicBarController extends Controller
     {
         return view('pages.create');
     }
+
     public function success()
     {
         return view('pages.bookings.sucess');
+    }
+
+    public function profile()
+    {
+        return view('pages.profile');
     }
 
     /**

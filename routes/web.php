@@ -25,5 +25,6 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/playlist', [MusicBarController::class, 'show']);
     Route::get('/home', [MusicBarController::class, 'home']);
     Route::get('/request-sent', [MusicBarController::class, 'success']);
+    Route::get('/profile-settings', [MusicBarController::class, 'profile']);
     Route::get('/booking-requests/{id}', [MusicBarController::class, 'bookingRequest'])->name('booking-requests');
 });

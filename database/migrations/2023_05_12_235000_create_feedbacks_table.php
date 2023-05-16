@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('booking_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->longText('content')->nullable();
+            $table->string('user_rating');
             $table->timestamps();
 
             $table->foreign('music_bar_id')->references('id')->on('music_bars')->onDelete('cascade');
